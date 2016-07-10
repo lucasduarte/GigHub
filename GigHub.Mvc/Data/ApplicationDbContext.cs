@@ -10,6 +10,9 @@ namespace GigHub.Mvc.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Gig> Gigs { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -22,5 +25,8 @@ namespace GigHub.Mvc.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+        
+
     }
 }

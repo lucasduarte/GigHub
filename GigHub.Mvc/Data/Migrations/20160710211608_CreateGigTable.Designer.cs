@@ -8,9 +8,10 @@ using GigHub.Mvc.Data;
 namespace GigHub.Mvc.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160710211608_CreateGigTable")]
+    partial class CreateGigTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -70,9 +71,7 @@ namespace GigHub.Mvc.Data.Migrations
                     b.Property<byte>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasAnnotation("MaxLength", 255);
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 
@@ -84,17 +83,13 @@ namespace GigHub.Mvc.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ArtistId")
-                        .IsRequired();
+                    b.Property<string>("ArtistId");
 
                     b.Property<DateTime>("DateTime");
 
-                    b.Property<byte?>("GenreId")
-                        .IsRequired();
+                    b.Property<byte?>("GenreId");
 
-                    b.Property<string>("Venue")
-                        .IsRequired()
-                        .HasAnnotation("MaxLength", 255);
+                    b.Property<string>("Venue");
 
                     b.HasKey("Id");
 
@@ -216,13 +211,11 @@ namespace GigHub.Mvc.Data.Migrations
                 {
                     b.HasOne("GigHub.Mvc.Models.ApplicationUser", "Artist")
                         .WithMany()
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ArtistId");
 
                     b.HasOne("GigHub.Mvc.Models.Genre", "Genre")
                         .WithMany()
-                        .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("GenreId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
