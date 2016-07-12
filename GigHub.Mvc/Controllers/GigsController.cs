@@ -32,9 +32,11 @@ namespace GigHub.Mvc.Controllers
         [HttpPost]
         public IActionResult Create(GigFormViewModel model)
         {
+            var artist = _context.Users.Single(u => u.Email == User.Identity.Name);
+
             var gig = new Gig
             {
-                ArtistId = User.Identity.Name,
+                ArtistId = artist.Id,
                 DateTime = DateTime.Parse(string.Format("{0} {1}", model.Date, model.Time)),
                 GenreId = model.Genre,
                 Venue = model.Venue
