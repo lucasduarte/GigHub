@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace GigHub.Mvc.Models.AccountViewModels
+namespace GigHub.Mvc.ViewModels
 {
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "Name")]
+        [StringLength(100)]
+        public string Name { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

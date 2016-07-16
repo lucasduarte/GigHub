@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using GigHub.Mvc.Models;
-using GigHub.Mvc.Models.AccountViewModels;
+using GigHub.Mvc.ViewModels;
 using GigHub.Mvc.Services;
 
 namespace GigHub.Mvc.Controllers
@@ -105,7 +105,12 @@ namespace GigHub.Mvc.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Name = model.Name
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
