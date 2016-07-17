@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace GigHub.Mvc.Models
@@ -9,5 +12,14 @@ namespace GigHub.Mvc.Models
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
+
+        public ICollection<Following> Followers { get; set; }
+        public ICollection<Following> Followees { get; set; }
+
+        public ApplicationUser()
+        {
+            Followers = new Collection<Following>();
+            Followees = new Collection<Following>();
+        }
     }
 }

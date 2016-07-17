@@ -7,7 +7,7 @@ namespace GigHub.Mvc.Models
     {
         public int Id { get; set; }
         
-        public ApplicationUser Artist { get; set; }
+        public virtual ApplicationUser Artist { get; set; }
 
         [Required]
         public string ArtistId { get; set; }
@@ -18,7 +18,7 @@ namespace GigHub.Mvc.Models
         [StringLength(255)]
         public string Venue { get; set; }
       
-        public Genre Genre { get; set; }
+        public virtual Genre Genre { get; set; }
 
         [Required]
         public byte GenreId { get; set; }
