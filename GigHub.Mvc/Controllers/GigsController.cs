@@ -19,6 +19,18 @@ namespace GigHub.Mvc.Controllers
         }
 
         [Authorize]
+        public ActionResult Mine()
+        {
+            var userId = _context.Users.Single(u => u.Email == User.Identity.Name).Id;
+            var gigs = _context.Gigs
+                .Where(g => g.ArtistId == userId && g.DateTime > DateTime.Now)
+                .Include(g => g.Genre)
+                .ToList();
+
+            return View(gigs);
+        }
+
+        [Authorize]
         public IActionResult Attending()
         {
             var userId = _context.Users.Single(u => u.Email == User.Identity.Name).Id;
@@ -76,7 +88,7 @@ namespace GigHub.Mvc.Controllers
             _context.Gigs.Add(gig);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Mine", "Gigs");
         }
     }
 }

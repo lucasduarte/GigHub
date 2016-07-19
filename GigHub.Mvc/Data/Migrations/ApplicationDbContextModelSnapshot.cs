@@ -71,10 +71,11 @@ namespace GigHub.Mvc.Data.Migrations
 
             modelBuilder.Entity("GigHub.Mvc.Models.Attendance", b =>
                 {
-                    b.Property<int>("GigId");
+                    b.Property<int>("GigId")
+                        .HasAnnotation("MaxLength", 450);
 
                     b.Property<string>("AttendeeId")
-                        .HasAnnotation("MaxLength", 100);
+                        .HasAnnotation("MaxLength", 450);
 
                     b.HasKey("GigId", "AttendeeId");
 
@@ -88,10 +89,10 @@ namespace GigHub.Mvc.Data.Migrations
             modelBuilder.Entity("GigHub.Mvc.Models.Following", b =>
                 {
                     b.Property<string>("FollowerId")
-                        .HasAnnotation("MaxLength", 100);
+                        .HasAnnotation("MaxLength", 450);
 
                     b.Property<string>("FolloweeId")
-                        .HasAnnotation("MaxLength", 100);
+                        .HasAnnotation("MaxLength", 450);
 
                     b.Property<string>("FolloweeId1");
 
